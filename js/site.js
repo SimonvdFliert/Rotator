@@ -3,7 +3,7 @@ function getValues(){
     let inputString = document.getElementById("inputString").value;
 
     //clean the string by removing special characters
-    inputString = inputString.replace(/[^a-zA-Z ]/g, "");
+    inputString = inputString.replace(/[^A-Z0-9]/ig, "");
 
     //lower string
     inputString = inputString.toLowerCase();
@@ -19,8 +19,7 @@ function checkPalindrome(inputString){
     for (let i = 0; i < (stringLength/2); i++) {
         if(inputString.charAt(i) != inputString.charAt(stringLength - i - 1)){
             return false;
-        }
-        
+        }        
     }
     return true;
 }
@@ -30,14 +29,14 @@ function displayContent(IsPalindrome, inputString){
 
     if(IsPalindrome){
         // write the message to the page
-        document.getElementById("msg").innerHTML = `Yes! Your input was a palindrome: ${inputString}`;
+        document.getElementById("msg").innerHTML = `Yes! Your input is a palindrome: ${inputString}`;
 
         // show the alert box
         document.getElementById("alert").classList.remove("invisible");
 
     }
     else{
-        document.getElementById("msg").innerHTML = `No! Your input ${inputString} was not a palindrome!`;
+        document.getElementById("msg").innerHTML = `No! Your input ${inputString} is not a palindrome!`;
 
         // show the alert box
         document.getElementById("alert").classList.remove("invisible");

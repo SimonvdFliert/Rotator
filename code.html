@@ -57,17 +57,75 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hello World
-                        function helloWorld(){
-                            alert("hello World");
+                        // Get values from page
+                        function getValues(){
+                            let inputString = document.getElementById("inputString").value;
+                        
+                            //clean the string by removing special characters
+                            inputString = inputString.replace(/[^A-Z0-9]/ig, "");
+                        
+                            //lower string
+                            inputString = inputString.toLowerCase();
+                        
+                            let IsPalindrome = checkPalindrome(inputString);
+                            displayContent(IsPalindrome, inputString)
+                        }
+                        
+                        //Check if values are palindrome
+                        function checkPalindrome(inputString){
+                        
+                            let stringLength = inputString.length;
+                            for (let i = 0; i < (stringLength/2); i++) {
+                                if(inputString.charAt(i) != inputString.charAt(stringLength - i - 1)){
+                                    return false;
+                                }        
+                            }
+                            return true;
+                        }
+                        
+                        // Display content on screen
+                        function displayContent(IsPalindrome, inputString){
+                        
+                            if(IsPalindrome){
+                                // write the message to the page
+                                document.getElementById("msg").innerHTML = `Yes! Your input is a palindrome: ${inputString}`;
+                        
+                                // show the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                        
+                            }
+                            else{
+                                document.getElementById("msg").innerHTML = `No! Your input ${inputString} is not a palindrome!`;
+                        
+                                // show the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
+                        
                         }
                     </code> 
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structered in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The Code is structered in three functions, those being "getValues", "checkPalindrome", and "displayContent". We will go into more detail below.</p>
+                    <h5>getValues</h5>
+                    <p>The getValues function retrieves the user input from the page and prepares it for analysis. Human language is quite diverse with special characters 
+                        and whilst humans are not sensitive to case-sensitive words, computers are! So we need to prepare the phrase by removing the special characters and 
+                        lowering the phrase into a consistent phrase. Following these adjustments, the function "checkPalindrome" is called. The output of this call will be 
+                        given to the function "displayContent".
+                    </p>
+
+                    <h5>checkPalindrome</h5>
+                    <p>The checkPalindrome function gets the cleaned phrase from getValues, which it analyses by checking the first character with the last character, the second 
+                        character with the second to last character and so on until no letters remain. If this analysis shows that two compared characters are not equal, then the 
+                        function returns a False boolean value. If all character checks come back clean, then the function returns a True boolean value. These values are returned to 
+                        the calling function, getValues.
+                    </p>
+
+                    <h5>displayContent</h5>
+                    <p>The displayContent function takes two input parameters, those being the input phrase and the output of checkPalindrome. If the output of checkPalindrome is True,
+                        meaning the word is a palindrome, then the user sees a positive message, indicating that they found a palindrome. If the value of IsPalindrome is false, then 
+                        the else statement is fired, which will show a different message to the user, explaining that the phrase was not a palindrome.
+                    </p>
                 </div>
             </div>
         </div>
